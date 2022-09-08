@@ -40,7 +40,7 @@ const getClone = (type, name) => {
   });
 };
 program
-  .version("1.0.0", "-v, --version")
+  .version(require("../package.json").version)
   .command("create <name>")
   .action((name) => {
     figlet(`react - client`).then((data) => {
