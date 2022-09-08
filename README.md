@@ -4,12 +4,12 @@ use npm:
 
 ```shell
 # global install
-npm i create-client-create -g
+npm i react-client-create -g
 # and then
 create-cli create [name]
 
 # or
-npm i create-client-create
+npm i react-client-create
 #then
 npx create-cli create [name]
 ```
@@ -18,7 +18,7 @@ use yarn
 
 ```shell
 # global install
-yarn global add create-client-create
+yarn global add react-client-create
 # and then
 create-cli create [name]
 ```
