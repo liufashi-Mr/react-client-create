@@ -1,0 +1,34 @@
+{
+  "name": "react-client-create",
+  "version": "1.0.0",
+  "description": "This is a tool to create react scaffolding",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liufashi-Mr/react-client-create.git"
+  },
+  "keywords": [
+    "react-cli",
+    "react"
+  ],
+  "author": "liufashi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liufashi-Mr/react-client-create/issues"
+  },
+  "homepage": "https://github.com/liufashi-Mr/react-client-create#readme",
+  "bin": {
+    "create-cli": "./bin/create-cli.js"
+  },
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "child_process": "^1.0.2",
+    "commander": "^9.4.0",
+    "figlet": "^1.5.2",
+    "inquirer": "^8.2.1",
+    "ora": "^5.0.0"
+  }
+}
