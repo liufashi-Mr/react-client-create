@@ -29,14 +29,25 @@ const getClone = (type, name) => {
     }
   }
   spinner.start();
-  process.exec("git clone " + url + name, function (error, stdout, stderr) {
+  process.exec("git clone " + url + name, (error, stdout, stderr) => {
     if (error !== null) {
       spinner.fail("exec error: " + error);
       console.log(stdout);
       return;
     }
     console.log(stdout);
-    spinner.succeed("download successfully!!!");
+    process.exec(
+     `cd ${name} && rm -rf .git && git init && git add . && git commit -m "init with create-cli"`,
+      (error, stdout, stderr) => {
+        if (error !== null) {
+          spinner.fail("exec error: " + error);
+          console.log(stdout);
+          return;
+        }
+        console.log(stdout);
+        spinner.succeed("download successfully!!!");
+      }
+    );
   });
 };
 program
