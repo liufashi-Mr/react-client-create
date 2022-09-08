@@ -22,3 +22,5 @@ yarn global add create-client-create
 # and then
 create-cli create [name]
 ```
+
+then You can use the cli with js or ts to customize your project choice, of course, you can also use my admin or h5 template to develop

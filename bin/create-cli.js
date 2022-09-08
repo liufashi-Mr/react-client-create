@@ -7,6 +7,38 @@ const inquirer = require("inquirer");
 const process = require("child_process");
 const ora = require("ora");
 const spinner = ora("try to get the registry ...");
+
+const getClone = (type, name) => {
+  let url;
+  switch (type) {
+    case "javascript": {
+      url = "https://github.com/liufashi-Mr/react-cli.git ";
+      break;
+    }
+    case "typescript": {
+      url = "https://github.com/liufashi-Mr/react-cli.git ";
+      break;
+    }
+    case "admin template (with react + ant-design)": {
+      url = "https://github.com/liufashi-Mr/react-antd-admin.git ";
+      break;
+    }
+    case "h5 template (with react + ant-mobile)": {
+      url = "https://github.com/liufashi-Mr/h5-react-typescript.git ";
+      break;
+    }
+  }
+  spinner.start();
+  process.exec("git clone " + url + name, function (error, stdout, stderr) {
+    if (error !== null) {
+      spinner.fail("exec error: " + error);
+      console.log(stdout);
+      return;
+    }
+    console.log(stdout);
+    spinner.succeed("download successfully!!!");
+  });
+};
 program
   .version("1.0.0", "-v, --version")
   .command("create <name>")
@@ -17,31 +49,42 @@ program
         .prompt([
           {
             type: "list",
-            name: "lang",
-            message: "use javascript or typescript",
-            choices: ["javascript", "typescript"],
+            name: "type",
+            message: "which do you want",
+            choices: [
+              "only react-cli ( you can user-defined )",
+              "admin template ( with react + ant-design )",
+              "h5 template (with react + ant-mobile )",
+            ],
             filter: function (val) {
               return val.toLowerCase();
             },
           },
         ])
-        .then(({ lang }) => {
-          spinner.start();
-          if (lang === "javascript") {
-            process.exec(
-              "git clone https://github.com/liufashi-Mr/react-cli.git " + name,
-              function (error, stdout, stderr) {
-                if (error !== null) {
-                  spinner.fail("exec error: " + error);
-                  console.log(stdout);
-                  return;
+        .then(({ type }) => {
+          if (type === "only react-cli ( you can user-defined )") {
+            inquirer
+              .prompt([
+                {
+                  type: "list",
+                  name: "lang",
+                  message: "work with javascript or typescript",
+                  choices: ["javascript", "typescript"],
+                  filter: function (val) {
+                    return val.toLowerCase();
+                  },
+                },
+              ])
+              .then(({ lang }) => {
+                if (lang === "javascript") {
+                  getClone(lang, name);
+                } else {
+                  spinner.fail("还没有写！！！");
                 }
-                console.log(stdout);
-                spinner.succeed("download successfully!!!");
-              }
-            );
+              })
+              .catch((err) => console.log(err));
           } else {
-            spinner.fail("还没有写！！！");
+            getClone(type, name);
           }
         })
         .catch((error) => {
