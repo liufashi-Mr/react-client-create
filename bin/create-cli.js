@@ -53,6 +53,7 @@ const getClone = (type, name) => {
 program
   .version(require("../package.json").version)
   .command("create <name>")
+  .alias("c")
   .action((name) => {
     figlet(`react - client`).then((data) => {
       console.log(chalk.yellow(data));
