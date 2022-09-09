@@ -24,3 +24,8 @@ create-cli create [name]
 ```
 
 then You can use the cli with js or ts to customize your project choice, of course, you can also use my admin or h5 template to develop
+when you run `create-cli create [name]`,you can see this
+
+![picture](https://blog.liufashi.top/img/typescript-h5-template/cli.png)
+
+and choose that you want
