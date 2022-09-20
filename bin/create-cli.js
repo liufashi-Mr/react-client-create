@@ -19,11 +19,11 @@ const getClone = (type, name) => {
       url = "https://github.com/liufashi-Mr/react-cli.git ";
       break;
     }
-    case "admin template (with react + ant-design)": {
+    case "2": {
       url = "https://github.com/liufashi-Mr/react-antd-admin.git ";
       break;
     }
-    case "h5 template (with react + ant-mobile)": {
+    case "3": {
       url = "https://github.com/liufashi-Mr/h5-react-typescript.git ";
       break;
     }
@@ -37,7 +37,7 @@ const getClone = (type, name) => {
     }
     console.log(stdout);
     process.exec(
-     `cd ${name} && rm -rf .git && git init && git add . && git commit -m "init with create-cli"`,
+      `cd ${name} && rm -rf .git && git init && git add . && git commit -m "init with create-cli"`,
       (error, stdout, stderr) => {
         if (error !== null) {
           spinner.fail("exec error: " + error);
@@ -64,9 +64,9 @@ program
             name: "type",
             message: "which do you want",
             choices: [
-              "only react-cli ( you can user-defined )",
-              "admin template ( with react + ant-design )",
-              "h5 template (with react + ant-mobile )",
+              "1. only react-cli ( you can user-defined )",
+              "2. admin template ( with react + ant-design )",
+              "3. h5 template (with react + ant-mobile )",
             ],
             filter: function (val) {
               return val.toLowerCase();
@@ -74,7 +74,8 @@ program
           },
         ])
         .then(({ type }) => {
-          if (type === "only react-cli ( you can user-defined )") {
+          const typeNo = type.slice(0, 1);
+          if (typeNo === "1") {
             inquirer
               .prompt([
                 {
@@ -96,7 +97,7 @@ program
               })
               .catch((err) => console.log(err));
           } else {
-            getClone(type, name);
+            getClone(typeNo, name);
           }
         })
         .catch((error) => {
